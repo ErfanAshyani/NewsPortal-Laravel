@@ -1,0 +1,19 @@
+ALTER TABLE "main"."tbl_s5fizik3tajrobi" RENAME TO "tbl_s5tajrobi3fizik";
+SELECT type,name,sql,tbl_name FROM "main".sqlite_master;
+SELECT type,name,sql,tbl_name FROM sqlite_temp_master;
+
+
+
+CREATE TABLE "sqlb_temp_table_4" (
+	"id"	INTEGER NOT NULL,
+	"question"	TEXT NOT NULL,
+	"answer"	TEXT NOT NULL,
+	"category"	TEXT NOT NULL DEFAULT "s5tajrobi3fizik",
+	"leitner"	INTEGER NOT NULL DEFAULT "0",
+	PRIMARY KEY("id")
+);
+INSERT INTO "main"."sqlb_temp_table_4" SELECT "id","question","answer","category","leitner" FROM "main"."tbl_s5tajrobi3fizik";
+DROP TABLE "main"."tbl_s5tajrobi3fizik";
+ALTER TABLE "main"."sqlb_temp_table_4" RENAME TO "tbl_s5tajrobi3fizik";
+
+UPDATE `tbl_s5tajrobi3fizik` SET `category`='s5tajrobi3fizik';
